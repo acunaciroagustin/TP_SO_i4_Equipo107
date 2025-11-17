@@ -1,0 +1,57 @@
+Integrantes que participaron de la interacción:
+ALFA: Berdia Santiago
+BETA: Armenio Francisco
+GAMMA: Acuña Ciro Agustin
+
+A- ¿Qué color de fondo tiene su página en el TESTING?
+BLUE
+
+B- ¿Qué color de fondo tiene su página en el DESARROLLO?
+YELLOW
+
+C- ¿Qué color de fondo tiene su página en el MASTER?
+YELLOW
+
+D- ¿Qué favicon quedó en el MASTER el de ALFA o el de BETA?
+Quedaron ambas porque creamos dos distintas porque nos tiraba error. Sin embargo, en caso de crear una sola, ubiese quedado la de Beta.
+
+E- ¿Algún integrante tuvo problemas al hacer el push?
+Sí.
+
+F- ¿Qué problemas surgieron?
+suguieron 2 problemas, el primero en el punto 12 porque nos aparece esto: (TESTING | MERGING), lo cual estaba relacionado con el archivo index.html.
+El segundo como era de esperar, ocurrio en el punto 16, ya que aparecia “This branch has conflicts” al momento de hacer el pull request.
+
+G- ¿Qué soluciones pueden aplicar y cuál sería la consecuencia de cada solución adoptada?
+
+La solucion al primer caso, por suerte, fue aplicar un commit -m "" y luego un git pull origin TESTING. En este caso, no hubo ninguna consecuencia.
+La solucion al segundo problema fue, que GAMMA se meta a la rama de TESTING (git checkout TESTING), actualizo al estado actual de TESTING con git pull origin TESTING. Ya estando en TESTING, uso git merge origin/main.
+Ahi entro a estilo.css, le aparecio esto:
+
+<<<<<<< HEAD
+body { background: blue; }
+=======
+body { background: yellow; }
+>>>>>>> origin/main
+Borro body { background: blue; } y ,obviamente, todas las barritas quedandose con body { background: yellow; }. Luego, lo subio.
+
+CONSECUENCIAS DEL SEGUNDO PROBLEMA: Al tener que elegir entre un color y el otro, se perdio el azul.
+
+H- ¿Qué sucede si cada uno utiliza el push -f?
+Cada push sobrescribe al anterior y se pierden los cambios de los compañeros.Es muy probable romper completamente la rama y perder información del equipo.
+
+I- ¿Qué debo hacer para que el index.html tenga todos los <p> de los puntos 18, 19 y 20 en DESARROLLO?
+1) GAMMA debe actualizar DESARROLLO y hacer el merge desde TESTING:
+   git checkout DESARROLLO
+   git pull origin DESARROLLO
+   git merge origin/TESTING
+
+2) Si aparecen conflictos en index.html, debe abrir el archivo y dejar las tres líneas <p> así:
+   <p>ALFA - fecha - hora</p>
+   <p>BETA - fecha - hora</p>
+   <p>GAMMA - fecha - hora</p>
+
+3) Luego confirmar y enviar:
+   git add index.html
+   git commit -m "GAMMA: unifico parrafos TESTING en DESARROLLO"
+   git push origin DESARROLLO
